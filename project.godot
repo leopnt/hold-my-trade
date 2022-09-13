@@ -14,6 +14,10 @@ config/name="hold-my-trade"
 run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+DebugUI="*res://src/debug_ui.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
