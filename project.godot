@@ -18,6 +18,11 @@ config/icon="res://icon.png"
 
 DebugUI="*res://src/debug_ui.gd"
 
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
