@@ -27,15 +27,15 @@ func curr_price() -> float:
 func _draw():
     var candle_list = _get_candle_list()
 
-    var label = Label.new()
-    var font = label.get_font("")
-    draw_string(font, Vector2(0, 4), name, Color(1, 1, 1))
-    label.free()
-
     for i in range(0, candle_list.size()):
         var candle = candle_list[i]
         _draw_candle(i, candle,
             (_price_history + _price_stack).min(), (_price_history + _price_stack).max())
+    
+    var label = Label.new()
+    var font = label.get_font("")
+    draw_string(font, Vector2(0, rect_size.y - 3), name, Color.green)
+    label.free()
 
 func _get_candle_list():
     var candle_list = []
@@ -52,14 +52,14 @@ func _draw_candle(idx: int, candle: Array, min_hist: float, max_hist: float):
     var gap_ratio = 1.5
     var candle_width = rect_size.x / gap_ratio / ((time_window /float(_stack_size)) + 1)
 
-    var little_candle_width = 2.0
-    var x = idx * candle_width * gap_ratio
+    var little_candle_width = 1.0
+    var x = idx * candle_width * gap_ratio + 1
 
     var open_price = candle[0]
     var close_price = candle[-1]
 
-    var mapped_open_price = _map(open_price, min_hist, max_hist, rect_size.y, 0)
-    var mapped_close_price = _map(close_price, min_hist, max_hist, rect_size.y, 0)
+    var mapped_open_price = _map(open_price, min_hist, max_hist, rect_size.y - 1, 0)
+    var mapped_close_price = _map(close_price, min_hist, max_hist, rect_size.y - 1, 0)
     var height = mapped_close_price - mapped_open_price
 
     var color = Color.green
@@ -69,8 +69,8 @@ func _draw_candle(idx: int, candle: Array, min_hist: float, max_hist: float):
     var min_price = candle.min()
     var max_price = candle.max()
     
-    var mapped_min_price = _map(min_price, min_hist, max_hist, rect_size.y, 0)
-    var mapped_max_price = _map(max_price, min_hist, max_hist, rect_size.y, 0)
+    var mapped_min_price = _map(min_price, min_hist, max_hist, rect_size.y - 1, 0)
+    var mapped_max_price = _map(max_price, min_hist, max_hist, rect_size.y - 1, 0)
 
     var min_max_height = mapped_max_price - mapped_min_price
 
@@ -82,7 +82,7 @@ func _draw_candle(idx: int, candle: Array, min_hist: float, max_hist: float):
 
     # big candle
     draw_rect(Rect2(x, mapped_open_price, candle_width, height), color, true)
-    draw_rect(Rect2(x, mapped_open_price, candle_width, height), Color.green, false, 2.0)
+    draw_rect(Rect2(x, mapped_open_price, candle_width, height), Color.green, false, 1.0)
 
 func get_price_force() -> float:
     # apply high force to keep price above 2 and apply
