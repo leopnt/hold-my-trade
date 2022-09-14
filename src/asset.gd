@@ -34,7 +34,8 @@ func _draw():
 
     for i in range(0, candle_list.size()):
         var candle = candle_list[i]
-        _draw_candle(i, candle, _price_history.min(), _price_history.max())
+        _draw_candle(i, candle,
+            (_price_history + _price_stack).min(), (_price_history + _price_stack).max())
 
 func _get_candle_list():
     var candle_list = []
@@ -54,46 +55,34 @@ func _draw_candle(idx: int, candle: Array, min_hist: float, max_hist: float):
     var little_candle_width = 2.0
     var x = idx * candle_width * gap_ratio
 
-    var candle_dyn_height = rect_size.y / (max_hist - min_hist)
-
     var open_price = candle[0]
     var close_price = candle[-1]
 
-    var height = close_price - open_price
+    var mapped_open_price = _map(open_price, min_hist, max_hist, rect_size.y, 0)
+    var mapped_close_price = _map(close_price, min_hist, max_hist, rect_size.y, 0)
+    var height = mapped_close_price - mapped_open_price
 
     var color = Color.green
-    if height < 0:
+    if close_price < open_price:
         color = Color.black
 
     var min_price = candle.min()
     var max_price = candle.max()
+    
+    var mapped_min_price = _map(min_price, min_hist, max_hist, rect_size.y, 0)
+    var mapped_max_price = _map(max_price, min_hist, max_hist, rect_size.y, 0)
 
-    var min_max_height = max_price - min_price
-
-    var min_offset = (min_hist * candle_dyn_height)
+    var min_max_height = mapped_max_price - mapped_min_price
 
     # little candle
     draw_rect(Rect2(
-        x + 0.45 * candle_width,
-        -min_offset + min_price * candle_dyn_height,
-        little_candle_width,
-        min_max_height * candle_dyn_height
+        x + 0.45 * candle_width, mapped_min_price,
+        little_candle_width, min_max_height
         ), Color.green, true)
 
     # big candle
-    draw_rect(Rect2(
-        x,
-        -min_offset + open_price * candle_dyn_height,
-        candle_width,
-        height * candle_dyn_height
-        ), color, true)
-
-    draw_rect(Rect2(
-        x,
-        -min_offset + open_price * candle_dyn_height,
-        candle_width,
-        height * candle_dyn_height
-        ), Color.green, false, 2.0)
+    draw_rect(Rect2(x, mapped_open_price, candle_width, height), color, true)
+    draw_rect(Rect2(x, mapped_open_price, candle_width, height), Color.green, false, 2.0)
 
 func get_price_force() -> float:
     # apply high force to keep price above 2 and apply
@@ -130,3 +119,6 @@ func _clear_old():
 
 func price_history() -> Array:
     return _price_history
+
+func _map(value, istart, istop, ostart, ostop):
+    return ostart + (ostop - ostart) * ((value - istart) / (istop - istart))

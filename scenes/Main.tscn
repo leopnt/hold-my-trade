@@ -29,12 +29,11 @@ clip_text = true
 margin_top = 26.0
 margin_right = 1024.0
 margin_bottom = 600.0
-columns = 2
 
 [node name="Asset" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 512.0
+margin_right = 1024.0
 margin_bottom = 574.0
 
 [node name="PriceTicker" type="Timer" parent="."]
