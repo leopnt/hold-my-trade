@@ -27,6 +27,11 @@ func curr_price() -> float:
 func _draw():
     var candle_list = _get_candle_list()
 
+    var label = Label.new()
+    var font = label.get_font("")
+    draw_string(font, Vector2(0, 4), name, Color(1, 1, 1))
+    label.free()
+
     for i in range(0, candle_list.size()):
         var candle = candle_list[i]
         _draw_candle(i, candle, _price_history.min(), _price_history.max())
@@ -125,10 +130,3 @@ func _clear_old():
 
 func price_history() -> Array:
     return _price_history
-
-
-func _on_Asset_item_rect_changed():
-    # rect is flipped to reduce complexity on drawing the char since y axis is
-    # oriented to bottom on game engines.
-    # this ensures rect is kept at the middle of screen on resize
-    rect_pivot_offset.y = rect_size.y / 2.0
