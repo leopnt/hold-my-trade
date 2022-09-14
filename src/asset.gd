@@ -16,6 +16,7 @@ onready var rng = RandomNumberGenerator.new()
 
 func _ready():
     _price_stack.push_back(rand_range(MIN_PRICE + 1, MAX_PRICE))
+    rng.randomize()
 
     for _i in range(time_window):
         self.tick()
@@ -124,3 +125,10 @@ func _clear_old():
 
 func price_history() -> Array:
     return _price_history
+
+
+func _on_Asset_item_rect_changed():
+    # rect is flipped to reduce complexity on drawing the char since y axis is
+    # oriented to bottom on game engines.
+    # this ensures rect is kept at the middle of screen on resize
+    rect_pivot_offset.y = rect_size.y / 2.0
