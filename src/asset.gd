@@ -21,8 +21,6 @@ func _ready():
     for _i in range(time_window):
         self.tick()
     
-    $Label.text = name
-
 func curr_price() -> float:
     return _price_stack[-1]
 
@@ -91,9 +89,9 @@ func get_price_force() -> float:
 
 func tick():
     var mean = 0.01 * get_price_force()
-    var new_price = curr_price() + rng.randfn(mean, 1)
+    var new_price = curr_price() + rng.randfn(mean, 0.1)
     while new_price < MIN_PRICE:
-        new_price = curr_price() + rng.randfn(mean, 1)
+        new_price = curr_price() + rng.randfn(mean, 0.1)
 
     _price_stack.push_back(new_price)
 
@@ -104,6 +102,9 @@ func tick():
         var is_time_window_full = _price_history.size() > time_window
         if is_time_window_full:
             _clear_old()
+    
+    var price_text = "%2.1f EUR" % curr_price()
+    $Label.text = "{} {}".format([name, price_text], "{}")
 
 func _dump_stack_to_history():
     for _i in range(_price_stack.size() - 1):

@@ -257,13 +257,13 @@ shader_param/roll_speed = 2.0
 shader_param/roll_size = 15.0
 shader_param/roll_variation = 2.988
 shader_param/distort_intensity = 0.001
-shader_param/noise_opacity = 0.178
+shader_param/noise_opacity = 0.044
 shader_param/noise_speed = 5.0
-shader_param/static_noise_intensity = 0.164
+shader_param/static_noise_intensity = 0.14
 shader_param/aberration = 0.03
 shader_param/brightness = 10.0
 shader_param/discolor = false
-shader_param/warp_amount = 0.331
+shader_param/warp_amount = 0.207
 shader_param/clip_warp = false
 shader_param/vignette_intensity = 0.4
 shader_param/vignette_opacity = 0.089
@@ -289,6 +289,7 @@ margin_bottom = -24.0
 custom_constants/separation = 24
 
 [node name="Label" type="Label" parent="CanvasLayer/VSplitContainer"]
+visible = false
 margin_right = 976.0
 margin_bottom = 31.0
 custom_colors/font_color = Color( 0, 1, 0, 1 )
@@ -297,7 +298,6 @@ custom_styles/normal = SubResource( 1 )
 clip_text = true
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/VSplitContainer"]
-margin_top = 55.0
 margin_right = 976.0
 margin_bottom = 552.0
 custom_constants/vseparation = 24
@@ -308,29 +308,29 @@ columns = 2
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 476.0
-margin_bottom = 237.0
+margin_bottom = 264.0
 
 [node name="Asset2" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 500.0
 margin_right = 976.0
-margin_bottom = 237.0
+margin_bottom = 264.0
 
 [node name="Asset3" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 261.0
+margin_top = 288.0
 margin_right = 476.0
-margin_bottom = 497.0
+margin_bottom = 552.0
 
 [node name="Asset4" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 500.0
-margin_top = 261.0
+margin_top = 288.0
 margin_right = 976.0
-margin_bottom = 497.0
+margin_bottom = 552.0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource( 3 )
