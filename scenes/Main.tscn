@@ -309,6 +309,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 476.0
 margin_bottom = 264.0
+up_key = 82
+down_key = 70
 
 [node name="Asset2" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -316,6 +318,8 @@ anchor_bottom = 0.0
 margin_left = 500.0
 margin_right = 976.0
 margin_bottom = 264.0
+up_key = 84
+down_key = 71
 
 [node name="Asset3" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -323,6 +327,8 @@ anchor_bottom = 0.0
 margin_top = 288.0
 margin_right = 476.0
 margin_bottom = 552.0
+up_key = 89
+down_key = 72
 
 [node name="Asset4" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -331,6 +337,8 @@ margin_left = 500.0
 margin_top = 288.0
 margin_right = 976.0
 margin_bottom = 552.0
+up_key = 85
+down_key = 74
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource( 3 )
