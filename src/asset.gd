@@ -9,7 +9,7 @@ const _stack_size: int = 4
 
 const time_window: int = 240
 
-const MIN_PRICE: float = 2.00
+const MIN_PRICE: float = 1.50
 const MAX_PRICE: float = 20.00
 
 onready var rng = RandomNumberGenerator.new()
@@ -20,10 +20,10 @@ export(UP_KEYS) var up_key
 export(DOWN_KEYS) var down_key
 
 func _ready():
-    _price_stack.push_back(rand_range(MIN_PRICE + 1, MAX_PRICE))
+    _price_stack.push_back(rand_range(MIN_PRICE, MAX_PRICE))
     rng.randomize()
 
-    for _i in range(time_window):
+    for _i in range(4*time_window):
         self.tick()
     
 func curr_price() -> float:
@@ -88,7 +88,7 @@ func get_price_force() -> float:
     # apply high force to keep price above 2 and apply
     # smaller force to keep below 20
     var x = curr_price()
-    var y = (1 / (x - MIN_PRICE)) - (0.001 * pow(x - 4, 3))
+    var y = (1 / (4*x - MIN_PRICE)) - (0.008 * pow(x - 4, 3)) - 0.1
 
     return y
 
@@ -100,9 +100,9 @@ func tick():
     elif Input.is_key_pressed(down_key):
         mean = -rand_range(0.01, 0.3)
 
-    var new_price = curr_price() + rng.randfn(mean, 0.2)
+    var new_price = curr_price() + rng.randfn(mean, 0.1)
     while new_price < MIN_PRICE:
-        new_price = curr_price() + rng.randfn(mean, 0.2)
+        new_price = curr_price() + rng.randfn(mean, 0.1)
 
     _price_stack.push_back(new_price)
 
