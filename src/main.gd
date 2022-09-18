@@ -15,7 +15,6 @@ func _on_PriceTicker_timeout():
 
 func _on_PriceDisplayTicker_timeout():
     var label = $CanvasLayer/VSplitContainer/Label
-    #print(label.get_font("normal_font").get_string_size(label.text))
     label.text = prices_text_buf
 
     var width = label.get_font("normal_font").get_string_size(prices_text_buf).x

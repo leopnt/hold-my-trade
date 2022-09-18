@@ -20,6 +20,8 @@ func _ready():
 
     for _i in range(time_window):
         self.tick()
+    
+    $Label.text = name
 
 func curr_price() -> float:
     return _price_stack[-1]
@@ -31,11 +33,6 @@ func _draw():
         var candle = candle_list[i]
         _draw_candle(i, candle,
             (_price_history + _price_stack).min(), (_price_history + _price_stack).max())
-    
-    var label = Label.new()
-    var font = label.get_font("")
-    draw_string(font, Vector2(0, rect_size.y - 3), name, Color.green)
-    label.free()
 
 func _get_candle_list():
     var candle_list = []
