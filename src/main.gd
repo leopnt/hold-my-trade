@@ -23,7 +23,7 @@ func _on_PriceDisplayTicker_timeout():
     else:
         for beer_price in beer_prices:
             prices_text_buf += beer_price.name + ": "
-            prices_text_buf += "%2.2f EUR     " % beer_price.curr_price()
+            prices_text_buf += "%2.1f EUR     " % beer_price.curr_price()
 
     while width > 2 * get_viewport_rect().size.x:
         prices_text_buf.erase(0, 1)

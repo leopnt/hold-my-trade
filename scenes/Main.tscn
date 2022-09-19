@@ -289,7 +289,6 @@ margin_bottom = -24.0
 custom_constants/separation = 24
 
 [node name="Label" type="Label" parent="CanvasLayer/VSplitContainer"]
-visible = false
 margin_right = 976.0
 margin_bottom = 31.0
 custom_colors/font_color = Color( 0, 1, 0, 1 )
@@ -298,47 +297,78 @@ custom_styles/normal = SubResource( 1 )
 clip_text = true
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer/VSplitContainer"]
+margin_top = 55.0
 margin_right = 976.0
 margin_bottom = 552.0
 custom_constants/vseparation = 24
 custom_constants/hseparation = 24
 columns = 2
 
-[node name="Asset" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
+[node name="Burgerbrau" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 476.0
-margin_bottom = 264.0
+margin_bottom = 150.0
+MIN_PRICE = 0.9
+MAX_PRICE = 3.0
 up_key = 82
 down_key = 70
 
-[node name="Asset2" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
+[node name="Telhouet" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 500.0
 margin_right = 976.0
-margin_bottom = 264.0
+margin_bottom = 150.0
+MAX_PRICE = 4.0
 up_key = 84
 down_key = 71
 
-[node name="Asset3" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
+[node name="Ambrée Nantaise" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 288.0
+margin_top = 174.0
 margin_right = 476.0
-margin_bottom = 552.0
+margin_bottom = 324.0
+MIN_PRICE = 1.7
+MAX_PRICE = 4.0
 up_key = 89
 down_key = 72
 
-[node name="Asset4" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
+[node name="Kasteel Rouge" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 500.0
-margin_top = 288.0
+margin_top = 174.0
 margin_right = 976.0
-margin_bottom = 552.0
+margin_bottom = 324.0
+MIN_PRICE = 1.75
+MAX_PRICE = 4.0
 up_key = 85
 down_key = 74
+
+[node name="Softs" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 348.0
+margin_right = 476.0
+margin_bottom = 497.0
+MIN_PRICE = 0.5
+MAX_PRICE = 1.0
+up_key = 73
+down_key = 75
+
+[node name="Twist - Monaco" parent="CanvasLayer/VSplitContainer/GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 500.0
+margin_top = 348.0
+margin_right = 976.0
+margin_bottom = 497.0
+MIN_PRICE = 1.1
+MAX_PRICE = 2.0
+up_key = 79
+down_key = 76
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource( 3 )
@@ -349,7 +379,7 @@ anchor_bottom = 1.0
 autostart = true
 
 [node name="PriceDisplayTicker" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.1
 autostart = true
 
 [node name="PriceDisplayFetcher" type="Timer" parent="."]

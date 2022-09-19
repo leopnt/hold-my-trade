@@ -9,13 +9,13 @@ const _stack_size: int = 4
 
 const time_window: int = 240
 
-const MIN_PRICE: float = 1.50
-const MAX_PRICE: float = 20.00
+export(float) var MIN_PRICE = 1.50
+export(float) var MAX_PRICE = 5.00
 
 onready var rng = RandomNumberGenerator.new()
 
-enum UP_KEYS {KEY_UP = 16777232, KEY_R = 82, KEY_T = 84, KEY_Y = 89, KEY_U = 85}
-enum DOWN_KEYS {KEY_DOWN = 16777234, KEY_F = 70, KEY_G = 71, KEY_H = 72, KEY_J = 74}
+enum UP_KEYS {KEY_UP = 16777232, KEY_R = 82, KEY_T = 84, KEY_Y = 89, KEY_U = 85, KEY_I = 73, KEY_O = 79}
+enum DOWN_KEYS {KEY_DOWN = 16777234, KEY_F = 70, KEY_G = 71, KEY_H = 72, KEY_J = 74, KEY_K = 75, KEY_L = 76}
 export(UP_KEYS) var up_key
 export(DOWN_KEYS) var down_key
 
@@ -93,16 +93,18 @@ func get_price_force() -> float:
     return y
 
 func tick():
-    var mean = 0.01 * get_price_force()
+    var mean = 0.0
 
     if Input.is_key_pressed(up_key):
-        mean = rand_range(0.01, 0.3)
+        mean = rand_range(0.01, 0.2)
     elif Input.is_key_pressed(down_key):
-        mean = -rand_range(0.01, 0.3)
+        mean = -rand_range(0.01, 0.2)
 
-    var new_price = curr_price() + rng.randfn(mean, 0.1)
+    var new_price = curr_price() + rng.randfn(mean, 0.02)
     while new_price < MIN_PRICE:
-        new_price = curr_price() + rng.randfn(mean, 0.1)
+        new_price = curr_price() + rng.randfn(0.02, 0.05)
+    while new_price > MAX_PRICE:
+        new_price = curr_price() + rng.randfn(-0.02, 0.05)
 
     _price_stack.push_back(new_price)
 
